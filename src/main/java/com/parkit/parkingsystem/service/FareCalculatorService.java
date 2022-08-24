@@ -1,6 +1,7 @@
 package com.parkit.parkingsystem.service;
 
 import com.parkit.parkingsystem.constants.Fare;
+import com.parkit.parkingsystem.customer.Customer;
 import com.parkit.parkingsystem.model.Ticket;
 
 public class FareCalculatorService {
@@ -14,15 +15,23 @@ public class FareCalculatorService {
 		long outHour = ticket.getOutTime().getTime();
 
 		double duration = ((double) outHour - inHour) / (60 * 60 * 1000);
+		
+		//Customer customer = new Customer(ticket.getVehicleRegNumber());
 
 		if (free30Min(duration)) {
 			ticket.setPrice(0);
 		} else {
 			switch (ticket.getParkingSpot().getParkingType()) {
 				case CAR:
+					if (!ticket.isNewCustomer()) {
+						ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR * 0.95);
+					}else 
 					ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
 					break;
 				case BIKE:
+					if (!ticket.isNewCustomer()) {
+						ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR * 0.95);
+					}else 
 					ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
 					break;
 				default:

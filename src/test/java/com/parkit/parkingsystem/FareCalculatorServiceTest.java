@@ -158,7 +158,7 @@ public class FareCalculatorServiceTest {
 		ticket.setParkingSpot(parkingSpot);
 		fareCalculatorService.calculateFare(ticket);
 		//assertEquals((0), ticket.getPrice());
-		assertThat(ticket.getPrice(), is(0));
+		assertThat(ticket.getPrice(), is(0.00));
 	}
 
 }
