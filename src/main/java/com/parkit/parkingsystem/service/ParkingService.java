@@ -19,7 +19,7 @@ public class ParkingService {
 
     private InputReaderUtil inputReaderUtil;
     private ParkingSpotDAO parkingSpotDAO;
-    private  TicketDAO ticketDAO;
+    private TicketDAO ticketDAO;
 
     public ParkingService(InputReaderUtil inputReaderUtil, ParkingSpotDAO parkingSpotDAO, TicketDAO ticketDAO){
         this.inputReaderUtil = inputReaderUtil;
@@ -43,7 +43,10 @@ public class ParkingService {
                 ticket.setVehicleRegNumber(vehicleRegNumber);
                 ticket.setPrice(0);
                 ticket.setInTime(inTime);
-                ticket.setOutTime(null);
+                ticket.setOutTime(inTime);
+                if (ticketDAO.getTicket(vehicleRegNumber)!= null) {
+                	System.out.println("Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount");
+                }
                 ticketDAO.saveTicket(ticket);
                 System.out.println("Generated Ticket and saved in DB");
                 System.out.println("Please park your vehicle in spot number:"+parkingSpot.getId());
@@ -92,7 +95,7 @@ public class ParkingService {
             }
             default: {
                 System.out.println("Incorrect input provided");
-                throw new IllegalArgumentException("Entered input is invalid");
+                return null;
             }
         }
     }
@@ -103,6 +106,11 @@ public class ParkingService {
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             Date outTime = new Date();
             ticket.setOutTime(outTime);
+            if (ticketDAO.isCustomer(vehicleRegNumber)) {
+            	ticket.setNewCustomer(false);
+            } else {
+            	ticket.setNewCustomer(true);
+            }
             fareCalculatorService.calculateFare(ticket);
             if(ticketDAO.updateTicket(ticket)) {
                 ParkingSpot parkingSpot = ticket.getParkingSpot();
