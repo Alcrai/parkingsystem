@@ -137,6 +137,7 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+
 				<executions>
 					<execution>
 						<goals>
@@ -154,11 +155,12 @@
 								<exclude>com/parkit/parkingsystem/*</exclude>
 								<exclude>com/parkit/parkingsystem/config/*</exclude>
 								<exclude>com/parkit/parkingsystem/constants/*</exclude>
-								<!--<exclude>com/parkit/parkingsystem/model/*</exclude>-->
+								<exclude>com/parkit/parkingsystem/model/*</exclude>
 								<exclude>com/parkit/parkingsystem/service/InteractiveShell.*</exclude>
 								<exclude>com/parkit/parkingsystem/util/*</exclude>
 							</excludes>
 						</configuration>
+
 					</execution>
 				</executions>
 			</plugin>
@@ -183,6 +185,8 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
 	<reporting>
 		<plugins>
 			<!-- Spotbugs -->
@@ -202,7 +206,25 @@
 				<artifactId>maven-jxr-plugin</artifactId>
 				<version>3.3.0</version>
 			</plugin>
+			<!-- Jacoco configuration-->
+
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>com/parkit/parkingsystem/*</exclude>
+						<exclude>com/parkit/parkingsystem/config/*</exclude>
+						<exclude>com/parkit/parkingsystem/constants/*</exclude>
+						<exclude>com/parkit/parkingsystem/model/*</exclude>
+						<exclude>com/parkit/parkingsystem/service/InteractiveShell.*</exclude>
+						<exclude>com/parkit/parkingsystem/util/*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
+
 
 	</reporting>
 
