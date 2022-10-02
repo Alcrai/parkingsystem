@@ -1,5 +1,6 @@
 package com.parkit.parkingsystem;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -20,22 +21,22 @@ public class ParkingSpotModelTest {
 	@Test
 	public void setIdTest() {
 		parkingSpot.setId(2);
-		assertThat(parkingSpot.getId(), is(2));
+		assertThat(parkingSpot.getId()).isEqualTo(2);
 	}
 	
 	@Test
 	public void equalsTest() {
-		assertThat(parkingSpot.equals(parkingSpot), is(true));
+		assertThat(parkingSpot.equals(parkingSpot)).isEqualTo(true);
 	}
 	
 	@Test
 	public void hasCodeTest() {
-		assertThat(parkingSpot.hashCode(), is(1));
+		assertThat(parkingSpot.hashCode()).isEqualTo(1);
 	}
 	
 	@Test
 	public void isAvailableTest() {
-		assertThat(parkingSpot.isAvailable(), is(true));
+		assertThat(parkingSpot.isAvailable()).isEqualTo(true);
 	}
 	
 	

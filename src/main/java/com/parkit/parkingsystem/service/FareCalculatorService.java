@@ -15,8 +15,7 @@ public class FareCalculatorService {
 
 		double duration = ((double) outHour - inHour) / (60 * 60 * 1000);
 		
-		//Customer customer = new Customer(ticket.getVehicleRegNumber());
-
+		
 		if (free30Min(duration)) {
 			ticket.setPrice(0);
 		} else {

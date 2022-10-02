@@ -10,7 +10,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>9</maven.compiler.source>
 		<maven.compiler.target>9</maven.compiler.target>
-		<java.version>9</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -154,12 +154,12 @@
 							<excludes>
 								<exclude>com/parkit/parkingsystem/*</exclude>
 								<exclude>com/parkit/parkingsystem/config/*</exclude>
-								<exclude>com/parkit/parkingsystem/constants/*</exclude>
-								<exclude>com/parkit/parkingsystem/model/*</exclude>
+						<!--		<exclude>com/parkit/parkingsystem/constants/*</exclude>
+								<exclude>com/parkit/parkingsystem/model/*</exclude> -->
 								<exclude>com/parkit/parkingsystem/service/InteractiveShell.*</exclude>
 								<exclude>com/parkit/parkingsystem/util/*</exclude>
 							</excludes>
-						</configuration>
+						</configuration> 
 
 					</execution>
 				</executions>
@@ -216,12 +216,12 @@
 					<excludes>
 						<exclude>com/parkit/parkingsystem/*</exclude>
 						<exclude>com/parkit/parkingsystem/config/*</exclude>
-						<exclude>com/parkit/parkingsystem/constants/*</exclude>
-						<exclude>com/parkit/parkingsystem/model/*</exclude>
+					<!--	<exclude>com/parkit/parkingsystem/constants/*</exclude>
+						<exclude>com/parkit/parkingsystem/model/*</exclude> -->
 						<exclude>com/parkit/parkingsystem/service/InteractiveShell.*</exclude>
 						<exclude>com/parkit/parkingsystem/util/*</exclude>
 					</excludes>
-				</configuration>
+				</configuration> 
 			</plugin>
 		</plugins>
 

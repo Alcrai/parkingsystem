@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.when;
 
 import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @ExtendWith(MockitoExtension.class)
@@ -55,11 +56,10 @@ public class ParkingDataBaseIT {
     public void testParkingACar(){
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
-        //TODO: check that a ticket is actually saved in DB and Parking table is updated with availability
-       
+               
         Ticket ticket = ticketDAO.getTicket("ABCDEA");
-        assertThat(ticket.getVehicleRegNumber(), is("ABCDEA"));
-        assertThat(ticket.getParkingSpot().isAvailable(), is(false));      
+        assertThat(ticket.getVehicleRegNumber()).isEqualTo("ABCDEA");
+        assertThat(ticket.getParkingSpot().isAvailable()).isEqualTo(false);      
     }
 
     @Test
@@ -67,11 +67,11 @@ public class ParkingDataBaseIT {
         testParkingACar();
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processExitingVehicle();
-        //TODO: check that the fare generated and out time are populated correctly in the database
+       
         Ticket ticket = ticketDAO.getTicket("ABCDEA");
-        assertThat(ticket.getOutTime(), is(ticketDAO.getTicket("ABCDEA").getOutTime()));
-        assertThat(ticket.getPrice(), is(ticketDAO.getTicket("ABCDEA").getPrice()));
-        //assertThat(ticket.getParkingSpot().isAvailable(), is(true));
+        assertThat(ticket.getOutTime()).isEqualTo(ticketDAO.getTicket("ABCDEA").getOutTime());
+        assertThat(ticket.getPrice()).isEqualTo(ticketDAO.getTicket("ABCDEA").getPrice());
+       
     }
 
 }
