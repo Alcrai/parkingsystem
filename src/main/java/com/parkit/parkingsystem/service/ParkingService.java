@@ -44,8 +44,12 @@ public class ParkingService {
                 ticket.setPrice(0);
                 ticket.setInTime(inTime);
                 ticket.setOutTime(inTime);
-                if (ticketDAO.getTicket(vehicleRegNumber)!= null) {
+                if (ticketDAO.isCustomer(vehicleRegNumber)) {
+                	ticket.setNewCustomer(false);
                 	System.out.println("Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount");
+                }
+                else {
+                	ticket.setNewCustomer(true);
                 }
                 ticketDAO.saveTicket(ticket);
                 System.out.println("Generated Ticket and saved in DB");
